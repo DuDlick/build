@@ -18,11 +18,11 @@ jobs:
       - name: Set up build environment
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential debhelper make
+          sudo apt-get install -y build-essential debhelper make python3
 
       - name: Build deb package
         run: |
-          cd argocomplete
+          cd argcomplete
           dpkg-buildpackage -us -uc -b
 
       - name: Upload deb package
@@ -30,3 +30,21 @@ jobs:
         with:
           name: argocomplete-deb
           path: ./*.deb
+
+  test:
+    runs-on: matrix.os
+    strategy:
+      matrix:
+        os: [ubuntu-21.04, ubuntu-21.10, ubuntu-22.10]
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      
+      - name: test application 
+        run: |
+          cd argcomplete
+          dpkg -i *.deb
+      
+      - name: check version 
+        run: pip list | grep argcomplete* 

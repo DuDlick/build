@@ -1,1 +1,2 @@
-argcomplete (3.1.2) stable; urgency=medium
+argcomplete (0.0.1-1) unstable; urgency=low
+	* Initial release
