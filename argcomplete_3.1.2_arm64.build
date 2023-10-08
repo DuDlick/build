@@ -1,0 +1,46 @@
+ dpkg-buildpackage -us -uc -ui
+dpkg-buildpackage: warning:     debian/changelog(l1): found end of file where expected start of change data
+dpkg-buildpackage: info: source package argcomplete
+dpkg-buildpackage: info: source version 3.1.2
+dpkg-buildpackage: info: source distribution stable
+dpkg-buildpackage: info: source changed by 
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture arm64
+dpkg-source: warning: argcomplete/debian/changelog(l1): found end of file where expected start of change data
+ fakeroot debian/rules clean
+dh clean
+dh: warning: Compatibility levels before 10 are deprecated (level 9 in use)
+   dh_auto_clean
+dh_auto_clean: warning: Compatibility levels before 10 are deprecated (level 9 in use)
+	make -j1 clean
+make[1]: Entering directory '/home/danik/tatlin/argcomplete'
+rm -rf build dist
+rm -rf *.egg-info
+make[1]: Leaving directory '/home/danik/tatlin/argcomplete'
+   dh_clean
+dh_clean: warning: Compatibility levels before 10 are deprecated (level 9 in use)
+ dpkg-source -b .
+dpkg-source: warning: argcomplete/debian/changelog(l1): found end of file where expected start of change data
+dpkg-source: warning: no source format specified in debian/source/format, see dpkg-source(1)
+dpkg-source: warning: source directory 'argcomplete' is not <sourcepackage>-<upstreamversion> 'argcomplete-3.1.2'
+dpkg-source: info: using source format '1.0'
+dpkg-source: info: building argcomplete in argcomplete_3.1.2.tar.gz
+dpkg-source: warning: missing information for output field Maintainer
+dpkg-source: info: building argcomplete in argcomplete_3.1.2.dsc
+ debian/rules build
+dh build
+dh: warning: Compatibility levels before 10 are deprecated (level 9 in use)
+   dh_update_autotools_config
+   dh_auto_configure
+dh_auto_configure: warning: Compatibility levels before 10 are deprecated (level 9 in use)
+   dh_auto_build
+dh_auto_build: warning: Compatibility levels before 10 are deprecated (level 9 in use)
+	make -j1
+make[1]: Entering directory '/home/danik/tatlin/argcomplete'
+python -m pip install .[test]
+/bin/bash: line 1: python: command not found
+make[1]: *** [Makefile:4: test_deps] Error 127
+make[1]: Leaving directory '/home/danik/tatlin/argcomplete'
+dh_auto_build: error: make -j1 returned exit code 2
+make: *** [debian/rules:4: build] Error 25
+dpkg-buildpackage: error: debian/rules build subprocess returned exit status 2
